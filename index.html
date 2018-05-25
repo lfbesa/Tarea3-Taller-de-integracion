@@ -13,6 +13,7 @@
    <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdcdxoePGWaXQAC7IopbpCeQgM9MtPskc&callback=initMap">
    </script>
+   <script src="/socket.io/socket.io.js"></script>
 
 
     <h3>My Google Maps Demo</h3>
@@ -20,8 +21,14 @@
     <div class="panel-body" id="flig">
       <p>hola</p>
     </div>
+    <p id='server-time'></p>
+    <p id='aeropuertos'></p>
     <script>
       var $mapa;
+      var $vuelos;
+      var $marcadores_vuelos;
+      var $aeropuertos;
+
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -47,29 +54,47 @@
       function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
           position: latLng,
-          map: map
+          map: map,
+          icon: {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
+            scaledSize: {
+              width:20,
+              height:20
+            }
+          }
         });
+        $marcadores_vuelos.push(marker);
+        
+      }
+      function updatepos(latLng, marker) {
+        marker.setPosition(latLng);
         map.panTo(latLng);
       }
       
       console.log($mapa);
     </script>
     
-
-
-    <p id='server-time'></p>
-    <p id='aeropuertos'></p>
-    <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
       var aer = document.getElementById('aeropuertos');
+    
+      socket.emit("AIRPORTS", {});
+      socket.emit("FLIGHTS", {});
+
+
       var $aerop = [];
 
+      const addAer = (data, options) => {
+        data.forEach(function(element) {
+          console.log(element);
+        });
+      }
+
       const addFlights = (data, options) => {
-        // Don't fade the message in if there is an 'X was typing'
         data.forEach(function(element) {
           $aerop.push(element.code);
+          $vuelos.push(element);
         });
         aer.innerHTML = $aerop;        
       }
@@ -77,12 +102,16 @@
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
         placeMarkerAndPanTo({lat: data.position[0], lng: data.position[1]}, $mapa);
-        socket.emit("FLIGHTS", {});
 
       });
       socket.on('FLIGHTS', (data) => {
         addFlights(data);
       });
+      socket.on('AIRPORTS', (data) => {
+        addAer(data);
+      })
+
+
 
     </script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
