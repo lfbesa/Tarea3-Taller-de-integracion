@@ -12,3 +12,48 @@
     </script>
   </body>
 </html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <div class="panel-body" id="flig">
+      <p>hola</p>
+    </div>
+    <script>
+      function initMap() {
+        var uluru = {lat: -33.4372, lng: -70.6506};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdcdxoePGWaXQAC7IopbpCeQgM9MtPskc&callback=initMap">
+    </script>
+    <p id='server-time'></p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
+      var el = document.getElementById('server-time');
+
+      socket.on('POSITION', function(data) {
+        el.innerHTML = 'Server time: ' + data.code;
+      });
+    </script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  </body>
+</html>
