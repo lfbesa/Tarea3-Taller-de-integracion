@@ -9,6 +9,11 @@
     </style>
   </head>
   <body>
+    <!-- Map Icons -->
+   <link rel="stylesheet" type="text/css" href="../dist/css/map-icons.css">
+   <script type="text/javascript" src="../dist/js/map-icons.js"></script>
+
+
     <h3>My Google Maps Demo</h3>
     <div id="map"></div>
     <div class="panel-body" id="flig">
@@ -22,16 +27,26 @@
           zoom: 8,
           center: uluru
         });
+        var icono new google.maps.Icon ({
+          size: 20,
+          origin: (10,10),
+          url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg'
+
+
+        });
         var marker = new google.maps.Marker({
           position: uluru,
           map: map,
-          icon: image
+          icon: icono
         });
+        
       }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdcdxoePGWaXQAC7IopbpCeQgM9MtPskc&callback=initMap">
     </script>
+
+
     <p id='server-time'></p>
     <p id='aeropuertos'></p>
     <script src="/socket.io/socket.io.js"></script>
