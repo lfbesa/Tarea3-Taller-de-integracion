@@ -28,6 +28,7 @@
       var $vuelos;
       var $aeropuertos;
 
+
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -65,10 +66,6 @@
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
       var aer = document.getElementById('aeropuertos');
-      socket.emit("FLIGHTS", {});
-      socket.emit("AIRPORTS", {});
-
-
       var $aerop = [];
 
       const addFlights = (data, options) => {
@@ -87,7 +84,6 @@
       socket.on('FLIGHTS', (data) => {
         addFlights(data);
       });
-      
 
     </script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
