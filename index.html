@@ -20,7 +20,17 @@
       <p>hola</p>
     </div>
     <script>
-      var image = 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg';
+      var marker1 = new google.maps.Marker({
+        position: {lat: -33.4372, lng: -70.6506},
+        map: map,
+        icon: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
+          scaledSize: {
+            width:20,
+            height:20
+          }
+        }
+      });
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -28,17 +38,7 @@
           center: uluru
         });
         
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-          icon: {
-            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
-            scaledSize: {
-              width:2000,
-              height:200
-            }
-          }
-        });
+        marker.setMap(map);
         
       }
     </script>
