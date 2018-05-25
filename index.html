@@ -37,10 +37,10 @@
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
       var aer = document.getElementById('aeropuertos');
+      var $aerop = [];
 
       const addFlights = (data, options) => {
         // Don't fade the message in if there is an 'X was typing'
-        var $aerop = [];
         data.forEach(function(element) {
           $aerop.push(element.code);
         });
