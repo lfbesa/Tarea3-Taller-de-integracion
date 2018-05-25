@@ -51,8 +51,7 @@
         });
         $mapa = map;     
       }
-
-      function placeMarkerAndPanTo(latLng, map, lista) {
+      function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
           position: latLng,
           map: map,
@@ -101,7 +100,7 @@
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
-        placeMarkerAndPanTo({lat: data.position[0], lng: data.position[1]}, $mapa, $marcadores_vuelos);
+        placeMarkerAndPanTo({lat: data.position[0], lng: data.position[1]}, $mapa);
 
       });
       socket.on('FLIGHTS', (data) => {
