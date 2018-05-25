@@ -49,7 +49,8 @@
         map.addListener('click', function(e) {
           placeMarkerAndPanTo(e.latLng, map);
           updatepos(e.latLng, marker1);
-        });     
+        });
+        $mapa = map;     
       }
       function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
