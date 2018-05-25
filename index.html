@@ -49,10 +49,11 @@
         console.log(aerop)
         
       }
-      socket.emit('FLIGHTS');
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
+        socket.emit("FLIGHTS");
+
       });
       socket.on('FLIGHTS', (data) => {
         addFlights(data);
