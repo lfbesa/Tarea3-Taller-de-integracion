@@ -31,14 +31,25 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdcdxoePGWaXQAC7IopbpCeQgM9MtPskc&callback=initMap">
     </script>
     <p id='server-time'></p>
+    <p id='aeropuertos'></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
-
+      var aer = document.getElementById('aeropuertos');
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
       });
+
+      socket.on('FLIGHTS', function(data) {
+        var aerop = []
+        data.forEach(function(element) {
+          aerop.push(elemetn);
+        });
+        aer.innerHTML = aerop;
+      });
+      socket.emit('FLIGHTS');
+
     </script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   </body>
