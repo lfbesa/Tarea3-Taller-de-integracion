@@ -7,7 +7,7 @@
       var el = document.getElementById('server-time');
 
       socket.on('POSITION', function(data) {
-        el.innerHTML = 'Server time: ' + data;
+        el.innerHTML = 'Server time: ' + data.code;
       });
     </script>
   </body>
