@@ -44,9 +44,10 @@
       socket.on('FLIGHTS', function(data) {
         var aerop = []
         data.forEach(function(element) {
-          aerop.push(elemetn);
+          aerop.push(element);
         });
         aer.innerHTML = aerop;
+        console.log(aerop)
       });
       socket.emit('FLIGHTS');
 
