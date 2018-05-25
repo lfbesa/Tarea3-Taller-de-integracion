@@ -113,11 +113,10 @@
       });
       socket.on('FLIGHTS', (data) => {
         addFlights(data, $vuelos);
-        console.log($vuelos);
       });
       socket.on('AIRPORTS', (data) => {
         addAer(data, $aeropuertos);
-        console.log($aeropuertos);
+        console.log(data);
       });
 
 
