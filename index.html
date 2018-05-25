@@ -92,6 +92,8 @@
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
         placeMarkerAndPanTo({lat: data.position[0], lng: data.position[1]}, $mapa);
+        socket.emit("AIRPORTS", {});
+        socket.emit("FLIGHTS", {});
 
       });
       socket.on('FLIGHTS', (data) => {
