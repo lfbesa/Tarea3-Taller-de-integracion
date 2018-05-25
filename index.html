@@ -37,19 +37,26 @@
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
       var aer = document.getElementById('aeropuertos');
-      socket.on('POSITION', function(data) {
-        el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
-      });
 
-      socket.on('FLIGHTS', function(data) {
-        var aerop = []
+      const addFlights = (data, options) => {
+        // Don't fade the message in if there is an 'X was typing'
+        var $typingMessages = getTypingMessages(data);
+        var $aerop = []
         data.forEach(function(element) {
-          aerop.push(element);
+          $aerop.push(element.code);
         });
         aer.innerHTML = aerop;
         console.log(aerop)
-      });
+        
+      }
       socket.emit('FLIGHTS');
+
+      socket.on('POSITION', function(data) {
+        el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
+      });
+      socket.on('FLIGHTS', (data) => {
+        addFlights(data);
+      });
 
     </script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
