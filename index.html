@@ -51,7 +51,7 @@
       var el = document.getElementById('server-time');
 
       socket.on('POSITION', function(data) {
-        el.innerHTML = 'Code: ' + data.code + 'Coordenates:' + data.position;
+        el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
       });
     </script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
