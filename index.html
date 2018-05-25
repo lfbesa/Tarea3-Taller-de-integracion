@@ -93,19 +93,17 @@
             if(lista[i]["code"]===element["code"]){a=0;}
           }
           if(a==1){
+            dic[element["code"]] = $marcadores_vuelos.length;
             placeflight({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, $marcadores_vuelos);
             lista.push(element);
             console.log($marcadores_vuelos.length);
-            dic[lista.length] = $marcadores_vuelos.length;
           }
         });
         aer.innerHTML = $aerop;        
       }
       const addAer = (data, lista) => {
         // Don't fade the message in if there is an 'X was typing'
-        data.forEach(function(element) {
-          lista.push(element);
-        });
+        console.log(data);
       }
 
       socket.on('POSITION', function(data) {
@@ -119,7 +117,6 @@
       });
       socket.on('AIRPORTS', (data) => {
         addAer(data, $aeropuertos);
-        console.log(data);
       });
 
 
