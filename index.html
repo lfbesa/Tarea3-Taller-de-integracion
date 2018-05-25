@@ -1,17 +1,3 @@
-<html>
-  <body>
-    <p id='server-time'></p>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
-      var el = document.getElementById('server-time');
-
-      socket.on('POSITION', function(data) {
-        el.innerHTML = 'Server time: ' + data.code;
-      });
-    </script>
-  </body>
-</html>
 <!DOCTYPE html>
 <html>
   <head>
