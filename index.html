@@ -51,6 +51,7 @@
         });
         $mapa = map;     
       }
+
       function placeMarkerAndPanTo(latLng, map, lista) {
         var marker = new google.maps.Marker({
           position: latLng,
@@ -63,7 +64,6 @@
             }
           }
         });
-        lista.push(marker);
         
       }
       function updatepos(latLng, marker) {
