@@ -44,7 +44,6 @@
         });
         marker1.setMap(map);  
         map.addListener('click', function(e) {
-          placeMarkerAndPanTo(e.latLng, map);
           updatepos(e.latLng, marker1);
         });
         $mapa = map;     
@@ -58,7 +57,6 @@
       }
       function updatepos(latLng, marker){
         marker.setPosition(latLng);
-        map.panTo(latLng);
       }
       
       console.log($mapa);
