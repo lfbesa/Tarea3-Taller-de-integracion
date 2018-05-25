@@ -113,7 +113,7 @@
 
       });
       socket.on('FLIGHTS', (data) => {
-        addFlights(data, $vuelos);
+        addFlights(data, $vuelos, $marcadores_vuelos);
       });
       socket.on('AIRPORTS', (data) => {
         addAer(data, $aeropuertos);
