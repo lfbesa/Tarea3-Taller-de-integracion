@@ -48,26 +48,20 @@
         marker1.setMap(map);  
         map.addListener('click', function(e) {
           placeMarkerAndPanTo(e.latLng, map);
+          updatepos(e.latLng, marker1);
         });
         $mapa = map;     
       }
       function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
           position: latLng,
-          map: map,
-          icon: {
-            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
-            scaledSize: {
-              width:20,
-              height:20
-            }
-          }
+          map: map
         });
-        
+        $marcadores_vuelos.push(marker);
+        map.panTo(latLng);
       }
       function updatepos(latLng, marker) {
         marker.setPosition(latLng);
-        map.panTo(latLng);
       }
       
       console.log($mapa);
@@ -77,23 +71,26 @@
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
       var aer = document.getElementById('aeropuertos');
-    
-      socket.emit("AIRPORTS", {});
       socket.emit("FLIGHTS", {});
+      socket.emit("AIRPORTS", {});
 
 
       var $aerop = [];
 
       const addAer = (data, options) => {
+        // Don't fade the message in if there is an 'X was typing'
         data.forEach(function(element) {
-          console.log(element);
+          $aerop.push(element.code);
+          $aeropuertos.push(element);
         });
+        aer.innerHTML = $aerop;        
       }
 
       const addFlights = (data, options) => {
+        // Don't fade the message in if there is an 'X was typing'
         data.forEach(function(element) {
           $aerop.push(element.code);
-          $vuelos.push(element);
+          $aeropuertos.push(element);
         });
         aer.innerHTML = $aerop;        
       }
