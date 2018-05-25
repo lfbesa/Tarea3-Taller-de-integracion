@@ -26,8 +26,8 @@
         icon: {
           url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
           scaledSize: {
-            width:20,
-            height:20
+            width:200,
+            height:200
           }
         }
       });
@@ -36,11 +36,10 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
           center: uluru
-        });
-        
-        marker.setMap(map);
-        
+        });        
       }
+      console.log('1');
+      marker.setMap(map);
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdcdxoePGWaXQAC7IopbpCeQgM9MtPskc&callback=initMap">
