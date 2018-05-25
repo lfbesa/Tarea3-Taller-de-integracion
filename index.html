@@ -27,17 +27,18 @@
           zoom: 8,
           center: uluru
         });
-        var icono new google.maps.Icon ({
-          size: 20,
-          origin: (10,10),
-          url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg'
-
-
-        });
+        
         var marker = new google.maps.Marker({
           position: uluru,
           map: map,
-          icon: icono
+          icon: {
+            size: 20,
+            origin: (10,10),
+            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg'
+            fillOpacity: 1,
+            strokeColor: '',
+            strokeWeight: 0
+          },
         });
         
       }
