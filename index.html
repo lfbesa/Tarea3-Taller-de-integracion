@@ -77,7 +77,13 @@
       const addFlights = (data, lista) => {
         data.forEach(function(element) {
           $aerop.push(element.code);
-          lista.push(element);
+          var count=lista.length;
+          var a =1;
+          for(var i=0;i<count;i++)
+          {
+            if(lista[i]["code"]===element["code"]){a=0;}
+          }
+          if(a==1)){lista.push(element);}
         });
         aer.innerHTML = $aerop;        
       }
