@@ -26,7 +26,7 @@
       var $vuelos=[];
       var $aeropuertos=[];
       var $marcadores_vuelos=[];
-      var $dic = {}:
+      var $dic = {};
 
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
@@ -119,6 +119,7 @@
       });
       socket.on('AIRPORTS', (data) => {
         addAer(data, $aeropuertos);
+        console.log(data);
       });
 
 
