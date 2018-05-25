@@ -23,8 +23,8 @@
     <p id='aeropuertos'></p>
     <script>
       var $mapa;
-      var $vuelos;
-      var $aeropuertos;
+      var $vuelos=[];
+      var $aeropuertos=[];
 
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
@@ -74,8 +74,7 @@
 
       var $aerop = [];
 
-      const addFlights = (data, lista) => {
-        // Don't fade the message in if there is an 'X was typing'
+      const addFlights = (data) => {
         data.forEach(function(element) {
           $aerop.push(element.code);
           lista.push(element);
