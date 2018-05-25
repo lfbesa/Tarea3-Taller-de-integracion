@@ -10,9 +10,7 @@
   </head>
   <body>
    
-   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdcdxoePGWaXQAC7IopbpCeQgM9MtPskc&callback=initMap">
-   </script>
+   
    <script src="/socket.io/socket.io.js"></script>
 
 
@@ -60,7 +58,9 @@
       
       console.log($mapa);
     </script>
-    
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdcdxoePGWaXQAC7IopbpCeQgM9MtPskc&callback=initMap">
+    </script>
     <script>
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
