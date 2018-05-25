@@ -21,6 +21,7 @@
       <p>hola</p>
     </div>
     <script>
+      var $mapa;
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -40,7 +41,8 @@
         marker1.setMap(map);  
         map.addListener('click', function(e) {
           placeMarkerAndPanTo(e.latLng, map);
-        });     
+        });
+        $mapa = map;     
       }
       function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
@@ -74,6 +76,7 @@
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
+
         socket.emit("FLIGHTS", {});
 
       });
