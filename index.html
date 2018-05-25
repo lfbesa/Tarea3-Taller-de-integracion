@@ -25,6 +25,7 @@
       var $mapa;
       var $vuelos=[];
       var $aeropuertos=[];
+      var $marcadores_vuelos=[];
 
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
@@ -91,7 +92,7 @@
             if(lista[i]["code"]===element["code"]){a=0;}
           }
           if(a==1){
-            placeMarkerAndPanTo({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa);
+            placeMarkerAndPanTo({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, $marcadores_vuelos);
             lista.push(element);
           }
         });
@@ -106,7 +107,6 @@
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
-        placeMarkerAndPanTo({lat: data.position[0], lng: data.position[1]}, $mapa);
         socket.emit("AIRPORTS", {});
         socket.emit("FLIGHTS", {});
 
