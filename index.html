@@ -51,7 +51,14 @@
       function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
           position: latLng,
-          map: map
+          map: map,
+          icon: {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
+            scaledSize: {
+              width:20,
+              height:20
+            }
+          }
         });
         map.panTo(latLng);
       }
@@ -83,7 +90,10 @@
           {
             if(lista[i]["code"]===element["code"]){a=0;}
           }
-          if(a==1){lista.push(element);}
+          if(a==1){
+            placeMarkerAndPanTo({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa);
+            lista.push(element);
+          }
         });
         aer.innerHTML = $aerop;        
       }
