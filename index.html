@@ -26,21 +26,21 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
           center: uluru
-        });        
-      }
-      var marker1 = new google.maps.Marker({
-        position: {lat: -33.4372, lng: -70.6506},
-        map: map,
-        icon: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
-          scaledSize: {
-            width:200,
-            height:200
+        }); 
+        var marker1 = new google.maps.Marker({
+          position: {lat: -33.4372, lng: -70.6506},
+          icon: {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
+            scaledSize: {
+              width:200,
+              height:200
+            }
           }
-        }
-      });
+        });
+        marker.setMap(map);       
+      }
+      
       console.log('1');
-      marker.setMap(map);
     </script>
     
 
