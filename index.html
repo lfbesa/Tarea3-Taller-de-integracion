@@ -52,7 +52,7 @@
         map.panTo(latLng);
       }
       
-      console.log('1');
+      console.log($mapa);
     </script>
     
 
@@ -76,7 +76,7 @@
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
-
+        placeMarkerAndPanTo({lat: data.position[0], lng: data.position[1]}, $mapa);
         socket.emit("FLIGHTS", {});
 
       });
