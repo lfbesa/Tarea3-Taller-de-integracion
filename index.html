@@ -26,6 +26,7 @@
       var $vuelos=[];
       var $aeropuertos=[];
       var $marcadores_vuelos=[];
+      var $dic = {}:
 
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
@@ -49,7 +50,7 @@
         });
         $mapa = map;     
       }
-      function placeMarkerAndPanTo(latLng, map, lista) {
+      function placeflight(latLng, map, lista) {
         var marker = new google.maps.Marker({
           position: latLng,
           map: map,
@@ -82,7 +83,7 @@
 
       var $aerop = [];
 
-      const addFlights = (data, lista) => {
+      const addFlights = (data, lista, dic) => {
         data.forEach(function(element) {
           $aerop.push(element.code);
           var count=lista.length;
@@ -92,8 +93,10 @@
             if(lista[i]["code"]===element["code"]){a=0;}
           }
           if(a==1){
-            placeMarkerAndPanTo({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, $marcadores_vuelos);
+            placeflight({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, $marcadores_vuelos);
             lista.push(element);
+            console.log($marcadores_vuelos.length);
+            dic[lista.length] = $marcadores_vuelos.length;
           }
         });
         aer.innerHTML = $aerop;        
@@ -116,7 +119,6 @@
       });
       socket.on('AIRPORTS', (data) => {
         addAer(data, $aeropuertos);
-        console.log(data);
       });
 
 
