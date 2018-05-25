@@ -48,7 +48,7 @@
         });
         $mapa = map;     
       }
-      function placeMarkerAndPanTo(latLng, map) {
+      function placeMarkerAndPanTo(latLng, map, lista) {
         var marker = new google.maps.Marker({
           position: latLng,
           map: map,
@@ -60,7 +60,7 @@
             }
           }
         });
-        map.panTo(latLng);
+        lista.push(marker);
       }
       function updatepos(latLng, marker){
         marker.setPosition(latLng);
