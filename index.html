@@ -84,7 +84,7 @@
                   '</div>'+
                   '<h1 id="firstHeading" class="firstHeading">' +vuelos[u]["code"] + '</h1>'+
                   '<div id="bodyContent">'+
-                  '<table style="width:100%"><tr><th>Airline</th><th>' +vuelos[u]["airline"] + '</th></tr><tr><td>Origin</td><td>' +vuelos[u]["origin"] + '</td></tr><tr><td>Destination</td><td>' +vuelos[u]["destination"] + '</td></tr><tr><td>Plane</td><td>' +vuelos[u]["plane"] + '</td></tr><tr><td>Seats</td><td>' +vuelos[u]["seats"] + '</td></tr></table>'+'</div>'+'</div>'; 
+                  '<table style="width:100%"><tr><th>Airline</th><th>' +vuelos[u]["airline"] + '</th></tr><tr><td>Origin</td><td>' +vuelos[u]["origin"]["airport_code"] + '</td></tr><tr><td>Destination</td><td>' +vuelos[u]["destination"]["airport_code"] + '</td></tr><tr><td>Plane</td><td>' +vuelos[u]["plane"] + '</td></tr><tr><td>Seats</td><td>' +vuelos[u]["seats"] + '</td></tr><tr><td>Position</td><td>' + marker.getPosition().lat() + ', ' + marker.getPosition().lng()+ '</td></tr></table>'+'</div>'+'</div>'; 
                   infoWindow.setContent(text);
                 }
               }
