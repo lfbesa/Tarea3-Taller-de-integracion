@@ -44,7 +44,6 @@
             }
           }
         });
-        console.log(marker1);
         marker1.setMap(map);  
         map.addListener('click', function(e) {
           updatepos(e.latLng, marker1);
@@ -78,15 +77,12 @@
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
       var aer = document.getElementById('aeropuertos');
-      socket.emit("AIRPORTS", {});
-      socket.emit("FLIGHTS", {});
+      
 
 
-      var $aerop = [];
 
       const addFlights = (data, vuel, marca, dict) => {
         data.forEach(function(element) {
-          $aerop.push(element.code);
           var count=vuel.length;
           var a =1;
           for(var i=0;i<count;i++)
@@ -97,24 +93,20 @@
             dict[element["code"]] = marca.length;
             placeflight({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, marca);
             vuel.push(element);
-            console.log(marca);
 
           }
         });
-        aer.innerHTML = $aerop;
       }
       const addAer = (data, lista) => {
         // Don't fade the message in if there is an 'X was typing'
-        console.log(data);
+        console.log(data.length);
       }
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
         socket.emit("AIRPORTS", {});
         socket.emit("FLIGHTS", {});
-        console.log(marcadores_vuelos[dic[data.code]]);
-        console.log(marcadores_vuelos);
-        console.log(dic[data.code]);
+       
 
         updatepos({lat: data.position[0], lng: data.position[1]}, marcadores_vuelos[dic[data.code]]);
         
