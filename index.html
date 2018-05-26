@@ -102,6 +102,7 @@
           var infoWindow = new google.maps.InfoWindow();
           infoWindow.setContent("Haaaa");
           var posic = marker.getPosition();
+          console.log(aeropuertos);
           for (n in aeropuertos){
             console.log(n["airport_position"]);
             console.log(posic);
@@ -211,7 +212,6 @@
       });
       socket.on('AIRPORTS', (data) => {
         addAer(data, aeropuertos);
-        console.log(aeropuertos);
       });
 
 
