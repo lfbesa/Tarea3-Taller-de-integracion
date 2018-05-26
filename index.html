@@ -99,21 +99,19 @@
       }
       const addAer = (data, lista) => {
         // Don't fade the message in if there is an 'X was typing'
-        console.log(data.length);
         for (var key in driversCounter) {
           if (driversCounter.hasOwnProperty(key)) {
               console.log(key);
           }
-}
+        }
       }
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
-        socket.emit("AIRPORTS", {});
         socket.emit("FLIGHTS", {});
-       
 
         updatepos({lat: data.position[0], lng: data.position[1]}, marcadores_vuelos[dic[data.code]]);
+        socket.emit("AIRPORTS", {});
         
 
       });
