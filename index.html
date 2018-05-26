@@ -73,7 +73,7 @@
           map.setZoom(8);
           map.setCenter(marker.getPosition());
           var infoWindow = new google.maps.InfoWindow();
-          infoWindow.setContent(marker.getPosition());
+          infoWindow.setContent("Posicion: " + marker.getPosition().lat() + ', ' + marker.getPosition().lng());
           if (selectedInfoWindow != null && selectedInfoWindow.getMap() != null) {
               selectedInfoWindow.close();
               //If the clicked window is the selected window, deselect it and return
