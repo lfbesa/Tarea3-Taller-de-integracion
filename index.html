@@ -34,17 +34,7 @@
           zoom: 8,
           center: uluru
         }); 
-        var marker1 = new google.maps.Marker({
-          position: {lat: -33.4372, lng: -70.6506},
-          icon: {
-            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
-            scaledSize: {
-              width:20,
-              height:20
-            }
-          }
-        });
-        marker1.setMap(map);  
+         
         map.addListener('click', function(e) {
           updatepos(e.latLng, marker1);
         });
@@ -115,7 +105,7 @@
           }
           if(a==1){
             placeairport({lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]}, $mapa);
-            aer.push(element);
+            aer.push(data[key]);
           }
         }
       }
