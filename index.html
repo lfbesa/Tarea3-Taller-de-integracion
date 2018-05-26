@@ -179,7 +179,6 @@
       }
 
       const addAer = (data, aer) => {
-        // Don't fade the message in if there is an 'X was typing'
         for (var key in data) {
           var count=aer.length;
           var a =1;
@@ -190,6 +189,7 @@
           if(a==1){
             placeairport({lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]}, $mapa);
             aer.push(data[key]);
+            console.log(data[key]);
             for (var j=0; j<aer.length-1;j++){
               drawline({lat: aer[j]["airport_position"][0], lng: aer[j]["airport_position"][1]} , {lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]},$mapa, '#FF0000');
             }
