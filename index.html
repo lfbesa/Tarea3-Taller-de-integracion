@@ -72,8 +72,8 @@
         marker.addListener('click', function() {
           map.setZoom(8);
           map.setCenter(marker.getPosition());
-          var infowindow = new google.maps.InfoWindow();
-          infowindow.setContent(contentString);
+          var infoWindow = new google.maps.InfoWindow();
+          infoWindow.setContent(contentString);
           if (selectedInfoWindow != null && selectedInfoWindow.getMap() != null) {
               selectedInfoWindow.close();
               //If the clicked window is the selected window, deselect it and return
