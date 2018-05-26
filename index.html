@@ -58,8 +58,10 @@
           map: map
         });
       }
-      function updatepos(latLng, marker){
-        drawline(marker.getPosition(), latLng, $mapa, '#FFFF00');
+      function updatepos(latLng, marker, i){
+        if (i > 2){
+          drawline(marker.getPosition(), latLng, $mapa, '#FFFF00');
+        }
         marker.setPosition(latLng);
       }
       function drawline(latLng1, latLng2, map, color){
@@ -82,6 +84,7 @@
       var socket = io("wss://integracion-tarea-3.herokuapp.com", { "path" : "/flights" });
       var el = document.getElementById('server-time');
       var aer = document.getElementById('aeropuertos');
+      var k = 0;
       
 
 
@@ -126,7 +129,8 @@
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
         socket.emit("FLIGHTS", {});
 
-        updatepos({lat: data.position[0], lng: data.position[1]}, marcadores_vuelos[dic[data.code]]);
+        updatepos({lat: data.position[0], lng: data.position[1]}, marcadores_vuelos[dic[data.code]], k);
+        k++;
         socket.emit("AIRPORTS", {});
         
 
