@@ -3,7 +3,7 @@
   <head>
     <style>
        #map {
-        height: 400px;
+        height: 500px;
         width: 100%;
        }
     </style>
@@ -14,8 +14,8 @@
    <script src="/socket.io/socket.io.js"></script>
 
 
-    <h3>Tarea 3 Taller de Integración</h3>
-    <h2>Felipe Besa</h2>
+    <h2>Tarea 3 Taller de Integración</h2>
+    <h3>Felipe Besa</h3>
     <div id="map"></div>
     
     <p id='server-time'></p>
@@ -73,7 +73,7 @@
           map.setZoom(8);
           map.setCenter(marker.getPosition());
           var infoWindow = new google.maps.InfoWindow();
-          infoWindow.setContent(contentString);
+          infoWindow.setContent(marker.getPosition());
           if (selectedInfoWindow != null && selectedInfoWindow.getMap() != null) {
               selectedInfoWindow.close();
               //If the clicked window is the selected window, deselect it and return
@@ -95,6 +95,25 @@
           position: latLng,
           map: map,
           icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+        });
+        marker.addListener('click', function() {
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
+          var infoWindow = new google.maps.InfoWindow();
+          infoWindow.setContent(contentString);
+          if (selectedInfoWindow != null && selectedInfoWindow.getMap() != null) {
+              selectedInfoWindow.close();
+              //If the clicked window is the selected window, deselect it and return
+              if (selectedInfoWindow == infoWindow) {
+                  selectedInfoWindow = null;
+                  return;
+              }
+          }
+          //If arrive here, that mean you should open the new info window 
+          //because is different from the selected
+          selectedInfoWindow = infoWindow;
+          selectedInfoWindow.open(map, marker);
+          
         });
       }
       function updatepos(latLng, marker, i){
