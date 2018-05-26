@@ -32,9 +32,26 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
           center: uluru
-        }); 
-
-        var contentString = '<div id="content">'+
+        });
+       
+        $mapa = map;     
+      }
+      function placeflight(latLng, map, lista) {
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          icon: {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
+            scaledSize: {
+              width:20,
+              height:20
+            }
+          }
+        });
+        marker.addListener('click', function() {
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
+          var contentString = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
@@ -54,29 +71,9 @@
             '(last visited June 22, 2009).</p>'+
             '</div>'+
             '</div>';
-
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-         
-       
-        $mapa = map;     
-      }
-      function placeflight(latLng, map, lista) {
-        var marker = new google.maps.Marker({
-          position: latLng,
-          map: map,
-          icon: {
-            url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
-            scaledSize: {
-              width:20,
-              height:20
-            }
-          }
-        });
-        marker.addListener('click', function() {
-          map.setZoom(8);
-          map.setCenter(marker.getPosition());
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
           infowindow.open(map, marker);
         });
         lista.push(marker);
