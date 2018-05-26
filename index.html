@@ -49,6 +49,10 @@
             }
           }
         });
+        marker.addListener('click', function() {
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
+        });
         lista.push(marker);
       }
       function placeairport(latLng, map) {
@@ -59,11 +63,10 @@
         });
       }
       function updatepos(latLng, marker, i){
-        if (i > 3){
+        if (i > 2){
           drawline(marker.getPosition(), latLng, $mapa, '#FFFF00');
         }
-        if (i>1){
-        marker.setPosition(latLng);}
+        marker.setPosition(latLng);
       }
       function drawline(latLng1, latLng2, map, color){
         var flightPath = new google.maps.Polyline({
