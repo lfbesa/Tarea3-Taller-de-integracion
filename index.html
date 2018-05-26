@@ -74,6 +74,22 @@
           map.setCenter(marker.getPosition());
           var infoWindow = new google.maps.InfoWindow();
           infoWindow.setContent("Posicion: " + marker.getPosition().lat() + ', ' + marker.getPosition().lng());
+          for (var key in dic){
+            if (marcadores_vuelos[dic[key]]==marker){
+              var count = vuelos.length;
+              for (u=0;u<count;u++){
+                if (vuelos[u]["code"]==key){
+                  var text = '<div id="content">'+
+                  '<div id="siteNotice">'+
+                  '</div>'+
+                  '<h1 id="firstHeading" class="firstHeading">' +vuelos[u]["code"] + '</h1>'+
+                  '<div id="bodyContent">'+
+                  '<table style="width:100%"><tr><th>Airline</th><th>' +vuelos[u]["airline"] + '</th></tr><tr><td>Origin</td><td>' +vuelos[u]["origin"] + '</td></tr><tr><td>Destination</td><td>' +vuelos[u]["destination"] + '</td></tr><tr><td>Plane</td><td>' +vuelos[u]["plane"] + '</td></tr><tr><td>Seats</td><td>' +vuelos[u]["seats"] + '</td></tr></table>'+'</div>'+'</div>'; 
+                  infoWindow.setContent(text);
+                }
+              }
+            }
+          }
           if (selectedInfoWindow != null && selectedInfoWindow.getMap() != null) {
               selectedInfoWindow.close();
               //If the clicked window is the selected window, deselect it and return
@@ -105,8 +121,6 @@
           var count=aeropuertos.length;
           for(var u=0;u<count;u++)
           {
-            console.log(aeropuertos[u]["airport_position"]);
-            console.log(posic);
             if (aeropuertos[u]["airport_position"][0] == posic.lat() && aeropuertos[u]["airport_position"][1] == posic.lng()){
               var text = '<div id="content">'+
               '<div id="siteNotice">'+
