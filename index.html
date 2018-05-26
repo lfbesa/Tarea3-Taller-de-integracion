@@ -64,6 +64,12 @@
         });
         lista.push(marker);
       }
+      function placeairport(latLng, map) {
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      }
       function updatepos(latLng, marker){
         marker.setPosition(latLng);
       }
@@ -97,11 +103,19 @@
           }
         });
       }
-      const addAer = (data, lista) => {
+
+      const addAer = (data, aer) => {
         // Don't fade the message in if there is an 'X was typing'
         for (var key in data) {
-          if (data.hasOwnProperty(key)) {
-              console.log(key);
+          var count=aer.length;
+          var a =1;
+          for(var i=0;i<count;i++)
+          {
+            if(aer[i]["airport_code"]===data[key]["airport_code"]){a=0;}
+          }
+          if(a==1){
+            placeairport({lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]}, $mapa);
+            aer.push(element);
           }
         }
       }
