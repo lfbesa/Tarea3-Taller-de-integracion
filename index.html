@@ -100,6 +100,11 @@
       const addAer = (data, lista) => {
         // Don't fade the message in if there is an 'X was typing'
         console.log(data.length);
+        for (var key in driversCounter) {
+          if (driversCounter.hasOwnProperty(key)) {
+              console.log(key);
+          }
+}
       }
 
       socket.on('POSITION', function(data) {
