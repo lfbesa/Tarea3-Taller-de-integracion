@@ -35,9 +35,7 @@
           center: uluru
         }); 
          
-        map.addListener('click', function(e) {
-          updatepos(e.latLng, marker1);
-        });
+       
         $mapa = map;     
       }
       function placeflight(latLng, map, lista) {
@@ -62,6 +60,16 @@
       }
       function updatepos(latLng, marker){
         marker.setPosition(latLng);
+      }
+      function drawline(latLng1, latLng2, map){
+        var flightPath = new google.maps.Polyline({
+          path: [latLng1, latLng2],
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        flightPath.setMap(map);
       }
       
       console.log($mapa);
@@ -106,6 +114,9 @@
           if(a==1){
             placeairport({lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]}, $mapa);
             aer.push(data[key]);
+            for (var j=0; j<aer.length-1;j++){
+              drawline({lat: aer[j]["airport_position"][0], lng: aer[j]["airport_position"][1]} , {lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]},$mapa)
+            }
           }
         }
       }
