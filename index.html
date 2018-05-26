@@ -99,8 +99,8 @@
       }
       const addAer = (data, lista) => {
         // Don't fade the message in if there is an 'X was typing'
-        for (var key in driversCounter) {
-          if (driversCounter.hasOwnProperty(key)) {
+        for (var key in data) {
+          if (data.hasOwnProperty(key)) {
               console.log(key);
           }
         }
