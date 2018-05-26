@@ -102,17 +102,18 @@
           var infoWindow = new google.maps.InfoWindow();
           infoWindow.setContent("Haaaa");
           var posic = marker.getPosition();
-          console.log(aeropuertos);
-          for (n in aeropuertos){
-            console.log(n["airport_position"]);
+          var count=aeropuertos.length;
+          for(var u=0;u<count;u++)
+          {
+            console.log(aeropuertos[u]["airport_position"]);
             console.log(posic);
-            if (n["airport_position"] == posic){
+            if (aeropuertos[u]["airport_position"][0] == posic.lat() && aeropuertos[u]["airport_position"][1] == posic.lng()){
               var text = '<div id="content">'+
               '<div id="siteNotice">'+
               '</div>'+
-              '<h1 id="firstHeading" class="firstHeading">' +n["name"] + '</h1>'+
+              '<h1 id="firstHeading" class="firstHeading">' +aeropuertos[u]["name"] + '</h1>'+
               '<div id="bodyContent">'+
-              '<table style="width:100%"><tr><th>Name</th><th>' +n["name"] + '</th></tr><tr><td>City</td><td>' +n["city"] + '</td></tr><tr><td>Country</td><td>' +n["country"] + '</td></tr><tr><td>Country code</td><td>' +n["country_code"] + '</td></tr><tr><td>Airport Code</td><td>' +n["airport_code"] + '</td></tr><tr><td>Airport position</td><td>' +n["airport_position"] + '</td></tr></table>'+'</div>'+'</div>'; 
+              '<table style="width:100%"><tr><th>Name</th><th>' +aeropuertos[u]["name"] + '</th></tr><tr><td>City</td><td>' +aeropuertos[u]["city"] + '</td></tr><tr><td>Country</td><td>' +aeropuertos[u]["country"] + '</td></tr><tr><td>Country code</td><td>' +aeropuertos[u]["country_code"] + '</td></tr><tr><td>Airport Code</td><td>' +aeropuertos[u]["airport_code"] + '</td></tr><tr><td>Airport position</td><td>' +aeropuertos[u]["airport_position"] + '</td></tr></table>'+'</div>'+'</div>'; 
               infoWindow.setContent(text);
             }
           }
