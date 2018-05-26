@@ -5,6 +5,7 @@
        #map {
         height: 500px;
         width: 100%;
+
        }
     </style>
   </head>
@@ -20,6 +21,48 @@
     
     <p id='server-time'></p>
     <p id='aeropuertos'></p>
+
+    <table border="5" bordercolor="red" align="center">
+        <tr>
+            <th colspan="3">SONAKSHI RAINA 10B ROLL No:-32</th> 
+        </tr>
+        <tr>
+            <th>Símbolo</th>
+            <th>Que significa en el mapa</th>
+        </tr>
+        <tr>
+          <td><img src="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" alt="" border=3 height=100 width=100></img></td>
+          <td>Aeropuerto</td>            
+        </tr>
+        <tr>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg" alt="" border=3 height=100 width=100></img></td>
+          <td>Avión</td>
+        </tr>
+        <tr>
+          <td><img src="H.gif" alt="" border=3 height=100 width=100></img></td>
+          <td>Camino teórico</td>
+        </tr>
+        <tr>
+          <td><img src="H.gif" alt="" border=3 height=100 width=100></img></td>
+          <td>Ruta seguida por avión</td>
+        </tr>
+        <tr>
+            <td> McLaren F1</td>
+            <td>Surrey, England</td>
+            <td border=3 height=100 width=100>Photo1</td>
+        </tr>
+        <tr>
+            <td>Ferrari Enzo</td>
+            <td>Maranello, Italy</td>
+            <td border=3 height=100 width=100>Photo1</td>
+        </tr>
+        <tr>
+            <td> Pagani Zonda F Clubsport</td>
+            <td>Modena, Italy</td>
+            <td border=3 height=100 width=100>Photo1</td>
+        </tr>
+    </table>
+
     <script>
       var $mapa;
       var vuelos=[];
@@ -84,7 +127,7 @@
                   '</div>'+
                   '<h1 id="firstHeading" class="firstHeading">' +vuelos[u]["code"] + '</h1>'+
                   '<div id="bodyContent">'+
-                  '<table style="width:100%"><tr><th>Airline</th><th>' +vuelos[u]["airline"] + '</th></tr><tr><td>Origin</td><td>' +vuelos[u]["origin"]["airport_code"] + '</td></tr><tr><td>Destination</td><td>' +vuelos[u]["destination"]["airport_code"] + '</td></tr><tr><td>Plane</td><td>' +vuelos[u]["plane"] + '</td></tr><tr><td>Seats</td><td>' +vuelos[u]["seats"] + '</td></tr><tr><td>Position</td><td>' + marker.getPosition().lat() + ', ' + marker.getPosition().lng()+ '</td></tr></table>'+'</div>'+'</div>'; 
+                  '<table style="width:100%"><tr><td>Airline:</td><td>' +vuelos[u]["airline"] + '</td></tr><tr><td>Origin:</td><td>' +vuelos[u]["origin"]["airport_code"] + '</td></tr><tr><td>Destination:</td><td>' +vuelos[u]["destination"]["airport_code"] + '</td></tr><tr><td>Plane:</td><td>' +vuelos[u]["plane"] + '</td></tr><tr><td>Seats:</td><td>' +vuelos[u]["seats"] + '</td></tr><tr><td>Position:</td><td>' + marker.getPosition().lat() + ', ' + marker.getPosition().lng()+ '</td></tr></table>'+'</div>'+'</div>'; 
                   infoWindow.setContent(text);
                 }
               }
