@@ -96,7 +96,8 @@
             dict[element["code"]] = marca.length;
             placeflight({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, marca);
             vuel.push(element);
-            console.log(marca.length);
+            console.log(marca);
+
           }
         });
         aer.innerHTML = $aerop;
