@@ -44,6 +44,7 @@
             }
           }
         });
+        console.log(marker1);
         marker1.setMap(map);  
         map.addListener('click', function(e) {
           updatepos(e.latLng, marker1);
