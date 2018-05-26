@@ -30,7 +30,7 @@
       var contentString = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+            '<h1 id="firstHeading" class="firstHeading"></h1>'+
             '<div id="bodyContent">'+
             '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
             'sandstone rock formation in the southern part of the '+
@@ -100,7 +100,48 @@
           map.setZoom(8);
           map.setCenter(marker.getPosition());
           var infoWindow = new google.maps.InfoWindow();
-          infoWindow.setContent(contentString);
+          infoWindow.setContent(marker.getPosition());
+          var posic = marker.getPosition();
+          for (n in aeropuertos){
+            console.log(n["airport_position"]);
+            console.log(posic);
+            if (n["airport_position"] == posic){
+              var text = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">' +n["name"] + '</h1>'+
+              '<div id="bodyContent">'+
+              '<table style="width:100%">
+                <tr>
+                  <th>Name</th>
+                  <th>' +n["name"] + '</th> 
+                </tr>
+                <tr>
+                  <td>City</td>
+                  <td>' +n["city"] + '</td> 
+                </tr>
+                <tr>
+                  <td>Country</td>
+                  <td>' +n["country"] + '</td> 
+                </tr>
+                <tr>
+                  <td>Country code</td>
+                  <td>' +n["country_code"] + '</td> 
+                </tr>
+                <tr>
+                  <td>Airport Code</td>
+                  <td>' +n["airport_code"] + '</td> 
+                </tr>
+                <tr>
+                  <td>Airport position</td>
+                  <td>' +n["airport_position"] + '</td> 
+                </tr>
+              </table>'
+              '</div>'+
+              '</div>'; 
+              infoWindow.setContent(text);
+            }
+          }
           if (selectedInfoWindow != null && selectedInfoWindow.getMap() != null) {
               selectedInfoWindow.close();
               //If the clicked window is the selected window, deselect it and return
