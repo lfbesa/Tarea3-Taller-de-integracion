@@ -115,7 +115,7 @@
             placeairport({lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]}, $mapa);
             aer.push(data[key]);
             for (var j=0; j<aer.length-1;j++){
-              drawline({lat: aer[j]["airport_position"][0], lng: aer[j]["airport_position"][1]} , {lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]},$mapa)
+              drawline({lat: aer[j]["airport_position"][0], lng: aer[j]["airport_position"][1]} , {lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]},$mapa);
             }
           }
         }
