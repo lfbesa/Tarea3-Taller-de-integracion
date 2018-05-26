@@ -23,10 +23,10 @@
     <p id='aeropuertos'></p>
     <script>
       var $mapa;
-      var $vuelos=[];
-      var $aeropuertos=[];
-      var $marcadores_vuelos=[];
-      var $dic = {};
+      var vuelos=[];
+      var aeropuertos=[];
+      var marcadores_vuelos=[];
+      var dic = {};
 
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
@@ -93,13 +93,14 @@
             if(lista[i]["code"]===element["code"]){a=0;}
           }
           if(a==1){
-            dic[element["code"]] = $marcadores_vuelos.length;
-            placeflight({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, $marcadores_vuelos);
+            dic[element["code"]] = marcadores_vuelos.length;
+            placeflight({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, marcadores_vuelos);
             lista.push(element);
-            console.log($marcadores_vuelos.length);
+            console.log(marcadores_vuelos.length);
           }
         });
-        aer.innerHTML = $aerop;        
+        aer.innerHTML = $aerop;
+        return lista;        
       }
       const addAer = (data, lista) => {
         // Don't fade the message in if there is an 'X was typing'
@@ -108,9 +109,9 @@
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
-        console.log($marcadores_vuelos[$dic[data.code]]);
-        console.log($marcadores_vuelos);
-        console.log($dic[data.code]);
+        console.log(marcadores_vuelos[dic[data.code]]);
+        console.log(marcadores_vuelos);
+        console.log(dic[data.code]);
 
         updatepos({lat: data.position[0], lng: data.position[1]}, $marcadores_vuelos[$dic[data.code]]);
         socket.emit("AIRPORTS", {});
@@ -118,10 +119,10 @@
 
       });
       socket.on('FLIGHTS', (data) => {
-        addFlights(data, $vuelos, $marcadores_vuelos);
+        addFlights(data, vuelos, marcadores_vuelos);
       });
       socket.on('AIRPORTS', (data) => {
-        addAer(data, $aeropuertos);
+        addAer(data, aeropuertos);
       });
 
 
