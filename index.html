@@ -17,9 +17,7 @@
     <h3>Tarea 3 Taller de Integración</h3>
     <h2>Felipe Besa</h2>
     <div id="map"></div>
-    <div class="panel-body" id="flig">
-      <p>hola</p>
-    </div>
+    
     <p id='server-time'></p>
     <p id='aeropuertos'></p>
     <script>
@@ -64,7 +62,8 @@
         if (i > 2){
           drawline(marker.getPosition(), latLng, $mapa, '#FFFF00');
         }
-        marker.setPosition(latLng);
+        if (i>1){
+        marker.setPosition(latLng);}
       }
       function drawline(latLng1, latLng2, map, color){
         var flightPath = new google.maps.Polyline({
