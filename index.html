@@ -83,20 +83,20 @@
 
       var $aerop = [];
 
-      const addFlights = (data, lista, dic) => {
+      const addFlights = (data, vuel, marca, dict) => {
         data.forEach(function(element) {
           $aerop.push(element.code);
           var count=lista.length;
           var a =1;
           for(var i=0;i<count;i++)
           {
-            if(lista[i]["code"]===element["code"]){a=0;}
+            if(vuel[i]["code"]===element["code"]){a=0;}
           }
           if(a==1){
-            dic[element["code"]] = marcadores_vuelos.length;
-            placeflight({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, marcadores_vuelos);
-            lista.push(element);
-            console.log(marcadores_vuelos.length);
+            dict[element["code"]] = marca.length;
+            placeflight({lat: element["origin"]["airport_position"][0], lng: element["origin"]["airport_position"][1]}, $mapa, marca);
+            vuel.push(element);
+            console.log(marca.length);
           }
         });
         aer.innerHTML = $aerop;
@@ -109,17 +109,13 @@
 
       socket.on('POSITION', function(data) {
         el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
-        console.log(marcadores_vuelos[dic[data.code]]);
-        console.log(marcadores_vuelos);
-        console.log(dic[data.code]);
-
-        updatepos({lat: data.position[0], lng: data.position[1]}, $marcadores_vuelos[$dic[data.code]]);
+       
         socket.emit("AIRPORTS", {});
         socket.emit("FLIGHTS", {});
 
       });
       socket.on('FLIGHTS', (data) => {
-        addFlights(data, vuelos, marcadores_vuelos);
+        addFlights(data, vuelos, marcadores_vuelos, dic);
       });
       socket.on('AIRPORTS', (data) => {
         addAer(data, aeropuertos);
