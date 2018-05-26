@@ -241,7 +241,6 @@
       }
 
       socket.on('POSITION', function(data) {
-        el.innerHTML = 'Code: ' + data.code + ' Coordenates:' + data.position[0] + ', ' + data.position[1];
         socket.emit("FLIGHTS", {});
 
         updatepos({lat: data.position[0], lng: data.position[1]}, marcadores_vuelos[dic[data.code]], k);
