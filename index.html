@@ -7,6 +7,18 @@
         height: 500px;
 
        }
+       footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+      }
+      .row.content {height: 1500px}
+    
+      /* Set gray background color and 100% height */
+      .sidenav {
+        background-color: #f1f1f1;
+        height: 100%;
+      }
     </style>
   </head>
   <body>
@@ -17,13 +29,9 @@
    
    <script src="/socket.io/socket.io.js"></script>
 
-
-    <h2>Tarea 3 Taller de Integración</h2>
-    <h3>Felipe Besa</h3>
-    <div class="row">
-      <div class="col-md-10" id="map"></div>
+    <div class="row content">
       
-      <div class="col-md-2">
+      <div class="col-md-2 sidenav">
           <table border="5" bordercolor="black">
             <tr>
                 <th colspan="3">Simbología</th> 
@@ -50,11 +58,15 @@
             </tr>
         </table>
       </div>
+      <div class="col-md-10" id="map"></div>
     </div>
     
     <p id='server-time'></p>
     <p id='aeropuertos'></p>
-
+    <footer>
+      <p>Felipe Besa Besa</p>
+      <p>Taller de integracion: Tarea 3.</p>
+    </footer>
     
 
     <script>
@@ -190,18 +202,18 @@
       function updatepos(latLng, marker, i){
         if (vuelos.length != 0){
           if (i > 5){
-            drawline(marker.getPosition(), latLng, $mapa, '#FFFF00');
+            drawline(marker.getPosition(), latLng, $mapa, '#FFFF00', 8);
           }
           marker.setPosition(latLng);
         }
       }
-      function drawline(latLng1, latLng2, map, color){
+      function drawline(latLng1, latLng2, map, color, ancho){
         var flightPath = new google.maps.Polyline({
           path: [latLng1, latLng2],
           geodesic: true,
           strokeColor: color,
           strokeOpacity: 1.0,
-          strokeWeight: 3
+          strokeWeight: ancho
         });
         flightPath.setMap(map);
       }
@@ -249,7 +261,7 @@
             placeairport({lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]}, $mapa);
             aer.push(data[key]);
             for (var j=0; j<aer.length-1;j++){
-              drawline({lat: aer[j]["airport_position"][0], lng: aer[j]["airport_position"][1]} , {lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]},$mapa, '#FF0000');
+              drawline({lat: aer[j]["airport_position"][0], lng: aer[j]["airport_position"][1]} , {lat: data[key]["airport_position"][0], lng: data[key]["airport_position"][1]},$mapa, '#FF0000', 4);
             }
           }
         }
