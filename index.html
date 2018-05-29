@@ -199,6 +199,14 @@
       }
       function updatepos(latLng, marker, i){
         if (vuelos.length != 0){
+          marker.setIcon({
+            path: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
+            scale: 20,
+            fillColor: "#00F",
+            fillOpacity: 1,
+            strokeWeight: 1,
+            rotate: 180
+          })
           if (i > 5){
             drawline(marker.getPosition(), latLng, $mapa, '#FFFF00', 8);
           }
