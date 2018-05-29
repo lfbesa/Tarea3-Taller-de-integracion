@@ -108,7 +108,7 @@
       function initMap() {
         var uluru = {lat: -33.4372, lng: -70.6506};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 6,
+          zoom: 7,
           center: uluru
         });
        
@@ -132,7 +132,7 @@
           }
         });
         marker.addListener('click', function() {
-          map.setZoom(6);
+          map.setZoom(7);
           map.setCenter(marker.getPosition());
           var infoWindow = new google.maps.InfoWindow();
           infoWindow.setContent("Posicion: " + marker.getPosition().lat() + ', ' + marker.getPosition().lng());
@@ -175,7 +175,7 @@
           icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
         });
         marker.addListener('click', function() {
-          map.setZoom(6);
+          map.setZoom(7);
           map.setCenter(marker.getPosition());
           var infoWindow = new google.maps.InfoWindow();
           infoWindow.setContent("Haaaa");
