@@ -199,7 +199,7 @@
       }
       function updatepos(latLng, marker, i){
         if (vuelos.length != 0){
-          var angleDeg = Math.atan2(latLng.lat() - marker.getPosition().lat(), latLng.lng() - marker.getPosition().lng()) * 180 / Math.PI;
+          var angleDeg = Math.atan2(latLng.lat - marker.getPosition().lat(), latLng.lng - marker.getPosition().lng()) * 180 / Math.PI;
           console.log(angleDeg);
           marker.setIcon({
             path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
