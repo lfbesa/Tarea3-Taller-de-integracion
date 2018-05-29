@@ -200,12 +200,16 @@
       function updatepos(latLng, marker, i){
         if (vuelos.length != 0){
           marker.setIcon({
-            path: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Plane_icon.svg',
+            path: google.maps.SymbolPath.CIRCLE,
             scale: 20,
             fillColor: "#00F",
             fillOpacity: 1,
             strokeWeight: 1,
-            rotate: 180
+            rotate: 180,
+            anchor: {
+             x:10,
+             y:10,
+            }
           })
           if (i > 5){
             drawline(marker.getPosition(), latLng, $mapa, '#FFFF00', 8);
